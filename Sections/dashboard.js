@@ -29,7 +29,7 @@ export async function fetchCryptodata() {
       <thead>
         <tr>
           <th>#</th>
-          <th>Name <span style = "font-size: 0.8rem; font-weight:400 ; margin-left: 10px">( Click to buy )</span></th>
+          <th>Name</th>
           <th>Price</th>
           <th>Change (24h)</th>
           <th>Market Cap</th>
@@ -134,36 +134,38 @@ export async function fetchCryptodata() {
     });
   }
 
-  async function showCoinDetails(coin) {
-    try {
-      const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coin.id}`);
-      const fullCoin = await res.json();
+  // Will use this later for affiliate links
 
-      const affiliateLink = `https://www.binance.com/en/trade/${coin.symbol.toUpperCase()}_USDT?ref=YOUR_CODE`;
-      const coinLink = `https://www.coingecko.com/en/coins/${coin.id}`;
+  // async function showCoinDetails(coin) {
+  //   try {
+  //     const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coin.id}`);
+  //     const fullCoin = await res.json();
 
-      modalBody.innerHTML = `
-        <div style="text-align:center; display:flex; flex-direction:column; gap:20px;">
-          <img src="${fullCoin.image.large}" alt="${coin.name}" width="60">
-          <h2>${fullCoin.name} (${coin.symbol.toUpperCase()})</h2>
-          <p>💲 <strong>${fullCoin.market_data.current_price.usd.toLocaleString()}</strong></p>
-          <p>📊 Market Cap: $${fullCoin.market_data.market_cap.usd.toLocaleString()}</p>
-          <p>📉 24h Low: $${fullCoin.market_data.low_24h.usd.toLocaleString()}</p>
-          <p>📈 24h High: $${fullCoin.market_data.high_24h.usd.toLocaleString()}</p>
-          <p>🪙 Supply: ${fullCoin.market_data.circulating_supply.toLocaleString()}</p>
-          <div style="margin-top:15px; display:flex; justify-content:center; gap:1rem;">
-            <button onclick="window.open('${affiliateLink}','_blank')" style="background:#f3ba2f;color:#000;padding:10px 15px;border:none;border-radius:6px;font-weight:600;cursor:pointer;">Buy on Binance</button>
-            <button onclick="window.open('${coinLink}','_blank')" style="background:transparent;color:white;border:1px solid #fff;padding:10px 15px;border-radius:6px;cursor:pointer;">More Details</button>
-          </div>
-        </div>
-      `;
-      modal.style.display = "flex";
-    } catch (error) {
-      console.error("Error fetching coin details:", error);
-      modalBody.innerHTML = `<p style="color:red;">Failed to load details.</p>`;
-      modal.style.display = "flex";
-    }
-  }
+  //     const affiliateLink = `https://www.binance.com/en/trade/${coin.symbol.toUpperCase()}_USDT?ref=YOUR_CODE`;
+  //     const coinLink = `https://www.coingecko.com/en/coins/${coin.id}`;
+
+  //     modalBody.innerHTML = `
+  //       <div style="text-align:center; display:flex; flex-direction:column; gap:20px;">
+  //         <img src="${fullCoin.image.large}" alt="${coin.name}" width="60">
+  //         <h2>${fullCoin.name} (${coin.symbol.toUpperCase()})</h2>
+  //         <p>💲 <strong>${fullCoin.market_data.current_price.usd.toLocaleString()}</strong></p>
+  //         <p>📊 Market Cap: $${fullCoin.market_data.market_cap.usd.toLocaleString()}</p>
+  //         <p>📉 24h Low: $${fullCoin.market_data.low_24h.usd.toLocaleString()}</p>
+  //         <p>📈 24h High: $${fullCoin.market_data.high_24h.usd.toLocaleString()}</p>
+  //         <p>🪙 Supply: ${fullCoin.market_data.circulating_supply.toLocaleString()}</p>
+  //         <div style="margin-top:15px; display:flex; justify-content:center; gap:1rem;">
+  //           <button onclick="window.open('${affiliateLink}','_blank')" style="background:#f3ba2f;color:#000;padding:10px 15px;border:none;border-radius:6px;font-weight:600;cursor:pointer;">Buy on Binance</button>
+  //           <button onclick="window.open('${coinLink}','_blank')" style="background:transparent;color:white;border:1px solid #fff;padding:10px 15px;border-radius:6px;cursor:pointer;">More Details</button>
+  //         </div>
+  //       </div>
+  //     `;
+  //     modal.style.display = "flex";
+  //   } catch (error) {
+  //     console.error("Error fetching coin details:", error);
+  //     modalBody.innerHTML = `<p style="color:red;">Failed to load details.</p>`;
+  //     modal.style.display = "flex";
+  //   }
+  // }
 
   setInterval(async () => {
   try {
