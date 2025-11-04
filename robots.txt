@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Prevent indexing of internal or non-public files
+Disallow: /script.js
+Disallow: /style.css
+
+Sitemap: https://coinspectra.vercel.app/sitemap.xml
